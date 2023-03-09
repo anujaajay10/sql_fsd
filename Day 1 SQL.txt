@@ -1,0 +1,105 @@
+1. Create a employee table and department table  
+
+
+CREATE TABLE Employee ( 
+
+    employee_id INT NOT NULL AUTO_INCREMENT, 
+
+    first_name VARCHAR(50) NOT NULL, 
+
+    last_name VARCHAR(50) NOT NULL, 
+
+    email VARCHAR(100) UNIQUE NOT NULL, 
+
+    phone VARCHAR(20), 
+
+    hire_date DATE NOT NULL, 
+
+    job_title VARCHAR(50) NOT NULL, 
+
+    department_id INT NOT NULL, 
+
+    salary DECIMAL(10,2) NOT NULL, 
+
+    PRIMARY KEY (employee_id), 
+
+    FOREIGN KEY (department_id) REFERENCES Department(department_id) 
+
+); 
+
+CREATE TABLE Department ( 
+
+    department_id INT NOT NULL AUTO_INCREMENT, 
+
+    department_name VARCHAR(50) NOT NULL, 
+
+    manager_id INT, 
+
+    location VARCHAR(100), 
+
+    PRIMARY KEY (department_id) 
+
+); 
+
+ 
+
+ 
+
+2.Write a query to fetch the first_name from the Employee table in the upper case and use the ALIAS name as EmpName. 
+
+Ans :SELECT UPPER(First_Name) AS EmpName FROM EMPLOYEE; 
+
+ 
+
+3.Write a query to fetch the number of employees working in the department ‘HR’. 
+
+Ans :SELECT count(*) FROM EMPLOYEE WHERE job_title="HR"; 
+
+ 
+
+4. Write a query to get the current date. 
+
+Ans :SELECT current_date(); 
+
+ 
+
+5.Write a query to retrieve the first four characters of  EmpLname from the EmployeeInfo table. 
+
+Ans :select substring(first_name,1,4) from employee; 
+
+ 
+
+6.Write a query to fetch only the place name(string before brackets) from the Address column of EmployeeInfo table. 
+
+Ans :select substring_index(location,'(',1)from department; 
+
+
+
+7.Write a query to create a new table that consists of data and structure copied from the other table. 
+
+Ans :create table newtable like employee; 
+
+insert into newtable select*from employee; 
+
+ 
+
+8. Write q query to find all the employees whose salary is between 50000 to 100000. 
+
+Ans :select * from employee where salary>='50000'and salary<='100000'; 
+
+ 
+
+9. Write a query to find the names of employees that begin with ‘S’. 
+
+Ans : select * from employee where first_name like's%'; 
+
+ 
+
+10. Write a query to fetch top N records. 
+
+Ans : select * employee limit N;
+
+
+11. Write a query to retrieve the EmpFname and EmpLname in a single column as “FullName”. The first name and the last name must be separated with space. 
+
+Ans : select concat(first_name,' ',last_name) as FullName from employee; 
